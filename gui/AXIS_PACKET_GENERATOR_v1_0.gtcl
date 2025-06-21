@@ -1,0 +1,2 @@
+# This file is automatically written.  Do not modify.
+proc gen_USERPARAMETER_Number_Of_Packets_To_Send_ENABLEMENT {Specific_Number_Of_Packets } {expr $Specific_Number_Of_Packets == true}
