@@ -99,14 +99,14 @@ set_property -name "sim.central_dir" -value "$proj_dir/${_xil_proj_name_}.ip_use
 set_property -name "sim.ip.auto_export_scripts" -value "1" -objects $obj
 set_property -name "simulator_language" -value "Mixed" -objects $obj
 set_property -name "target_language" -value "VHDL" -objects $obj
-set_property -name "webtalk.activehdl_export_sim" -value "2" -objects $obj
-set_property -name "webtalk.ies_export_sim" -value "2" -objects $obj
-set_property -name "webtalk.modelsim_export_sim" -value "2" -objects $obj
-set_property -name "webtalk.questa_export_sim" -value "2" -objects $obj
-set_property -name "webtalk.riviera_export_sim" -value "2" -objects $obj
-set_property -name "webtalk.vcs_export_sim" -value "2" -objects $obj
-set_property -name "webtalk.xsim_export_sim" -value "2" -objects $obj
-set_property -name "webtalk.xsim_launch_sim" -value "2" -objects $obj
+set_property -name "webtalk.activehdl_export_sim" -value "23" -objects $obj
+set_property -name "webtalk.ies_export_sim" -value "23" -objects $obj
+set_property -name "webtalk.modelsim_export_sim" -value "23" -objects $obj
+set_property -name "webtalk.questa_export_sim" -value "23" -objects $obj
+set_property -name "webtalk.riviera_export_sim" -value "23" -objects $obj
+set_property -name "webtalk.vcs_export_sim" -value "23" -objects $obj
+set_property -name "webtalk.xsim_export_sim" -value "23" -objects $obj
+set_property -name "webtalk.xsim_launch_sim" -value "35" -objects $obj
 
 # Create 'sources_1' fileset (if not found)
 if {[string equal [get_filesets -quiet sources_1] ""]} {
@@ -115,7 +115,7 @@ if {[string equal [get_filesets -quiet sources_1] ""]} {
 
 # Set IP repository paths
 set obj [get_filesets sources_1]
-set_property "ip_repo_paths" "[file normalize "$origin_dir/../../"]" $obj
+set_property "ip_repo_paths" "C:/Users/Hosseinali/Desktop/myip_1.0 [file normalize "$origin_dir/../../"]" $obj
 
 # Rebuild user ip_repo's index before adding any source files
 update_ip_catalog -rebuild
@@ -191,6 +191,7 @@ proc cr_bd_design_1 { parentCell } {
   if { $bCheckIPs == 1 } {
      set list_check_ips "\ 
   xilinx.com:user:AXIS_PACKET_GENERATOR:1.0\
+  xilinx.com:ip:c_counter_binary:12.0\
   xilinx.com:ip:sim_clk_gen:1.0\
   "
 
@@ -251,8 +252,17 @@ proc cr_bd_design_1 { parentCell } {
   # Create instance: AXIS_PACKET_GENERATOR_0, and set properties
   set AXIS_PACKET_GENERATOR_0 [ create_bd_cell -type ip -vlnv xilinx.com:user:AXIS_PACKET_GENERATOR:1.0 AXIS_PACKET_GENERATOR_0 ]
   set_property -dict [ list \
-   CONFIG.Number_Of_Packets_To_Send {3} \
+   CONFIG.Number_Of_Packets_To_Send {1} \
  ] $AXIS_PACKET_GENERATOR_0
+
+  # Create instance: c_counter_binary_0, and set properties
+  set c_counter_binary_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:c_counter_binary:12.0 c_counter_binary_0 ]
+  set_property -dict [ list \
+   CONFIG.Final_Count_Value {50} \
+   CONFIG.Restrict_Count {true} \
+   CONFIG.Sync_Threshold_Output {true} \
+   CONFIG.Threshold_Value {50} \
+ ] $c_counter_binary_0
 
   # Create instance: sim_clk_gen_0, and set properties
   set sim_clk_gen_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:sim_clk_gen:1.0 sim_clk_gen_0 ]
@@ -261,8 +271,8 @@ proc cr_bd_design_1 { parentCell } {
   connect_bd_intf_net -intf_net AXIS_PACKET_GENERATOR_0_M_AXIS [get_bd_intf_ports M_AXIS_0] [get_bd_intf_pins AXIS_PACKET_GENERATOR_0/M_AXIS]
 
   # Create port connections
-  connect_bd_net -net sim_clk_gen_0_clk [get_bd_pins AXIS_PACKET_GENERATOR_0/M_AXIS_ACLK] [get_bd_pins sim_clk_gen_0/clk]
-  connect_bd_net -net sim_clk_gen_0_sync_rst [get_bd_pins AXIS_PACKET_GENERATOR_0/M_AXIS_ARESETN] [get_bd_pins AXIS_PACKET_GENERATOR_0/M_AXIS_tREADY] [get_bd_pins AXIS_PACKET_GENERATOR_0/SEND_PACKET] [get_bd_pins sim_clk_gen_0/sync_rst]
+  connect_bd_net -net sim_clk_gen_0_clk [get_bd_pins AXIS_PACKET_GENERATOR_0/M_AXIS_ACLK] [get_bd_pins c_counter_binary_0/CLK] [get_bd_pins sim_clk_gen_0/clk]
+  connect_bd_net -net sim_clk_gen_0_sync_rst [get_bd_pins AXIS_PACKET_GENERATOR_0/M_AXIS_ARESETN] [get_bd_pins AXIS_PACKET_GENERATOR_0/SEND_PACKET] [get_bd_pins sim_clk_gen_0/sync_rst]
 
   # Create address segments
 

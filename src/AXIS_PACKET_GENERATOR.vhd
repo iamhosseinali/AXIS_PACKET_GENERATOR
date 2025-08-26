@@ -16,7 +16,7 @@ entity AXIS_PACKET_GENERATOR is
 		SEND_PACKET		: in std_logic;
 		M_AXIS_ACLK		: in std_logic;
 		M_AXIS_ARESETN	: in std_logic;
-		M_AXIS_tREADY	: in std_logic;
+		M_AXIS_tREADY	: in std_logic; -- its not implemented
 		M_AXIS_tDATA 	: out std_logic_vector(tDATA_WIDTH-1 downto 0); 
 		M_AXIS_tVALID 	: out std_logic; 
 		M_AXIS_tLAST	: out std_logic 
@@ -60,8 +60,6 @@ constant HEX_SPECIAL_PACKET : STD_LOGIC_VECTOR(msb_bit_cnt-1 downto 0) := to_slv
 
 
 constant packet_word_cnt : integer := msb_bit_cnt/tDATA_WIDTH; 
-type arrayType is array(0 to packet_word_cnt-1) of STD_LOGIC_VECTOR(tDATA_WIDTH-1 downto 0); 
-signal SPECIAL_PACKET_INT : arrayType := 	(others=>(others=>'0'));
 constant Wcnt : integer := packet_word_cnt-1; 
 
 signal index 			: integer := 0; 
@@ -76,29 +74,27 @@ begin
 
 M_AXIS_tLAST   <= S_AXIS_tLAST_INT;
 Specific_Number_Of_Packets_con: if(Specific_Number_Of_Packets=true) generate
-	process(M_AXIS_ACLK)
-	begin
-		if rising_edge(M_AXIS_ACLK) then 
-			if ( M_AXIS_ARESETN = '0' ) then
+process(M_AXIS_ACLK)
+begin
+	if rising_edge(M_AXIS_ACLK) then 
+		if ( M_AXIS_ARESETN = '0' ) then
 				M_AXIS_tVALID   <= '0'; 
 				Packet_cnt		<= 0;
 				index			<= 0;
 				FSM				<= Idle;
-			else 		
-				SEND_PACKET_INT		<= SEND_PACKET;	
+		else 		
+			SEND_PACKET_INT		<= SEND_PACKET;	
 				M_AXIS_tVALID  		<= '0'; 
-				S_AXIS_tLAST_INT	<= '0'; 		
-				case FSM is 
-					when idle => 
+			S_AXIS_tLAST_INT	<= '0'; 		
+			case FSM is 
+				when idle => 
 						if(SEND_PACKET='1' and SEND_PACKET_INT='0') then 
-							FSM	<= Send1;
-						end if; 
-					when Send1 => 
+						FSM	<= Send1;
+					end if; 
+				when Send1 => 
 						M_AXIS_tVALID  	<= '1'; 		
 						M_AXIS_tDATA	<= HEX_SPECIAL_PACKET(tDATA_WIDTH*(Wcnt-index+1)-1 downto tDATA_WIDTH*(Wcnt-index+1)-8);	
-						if(M_AXIS_tREADY='1') then
-							index	<= index +1; 
-						end if; 	
+						index			<= index +1; 
 						if(index=Wcnt)then 
 							index				<= 0;
 							Packet_cnt			<= Packet_cnt +1;
@@ -109,11 +105,11 @@ Specific_Number_Of_Packets_con: if(Specific_Number_Of_Packets=true) generate
 							FSM			   <= Idle;
 							M_AXIS_tVALID  	<= '0'; 						
 						end if; 	
-					when others => 
-				end case ;
-			end if; 
-		end if;
-	end process;
+				when others => 
+			end case ;
+		end if; 
+	end if;
+end process;
 end generate Specific_Number_Of_Packets_con;
 
 
@@ -138,14 +134,12 @@ nSpecific_Number_Of_Packets_con: if(Specific_Number_Of_Packets=false) generate
 					when Send1 => 
 						M_AXIS_tVALID  	<= '1'; 		
 						M_AXIS_tDATA	<= HEX_SPECIAL_PACKET(tDATA_WIDTH*(Wcnt-index+1)-1 downto tDATA_WIDTH*(Wcnt-index+1)-8);	
-						if(M_AXIS_tREADY='1') then
-							index	<= index +1; 
-						end if; 	
+						index			<= index +1; 
 						if(index=Wcnt)then 
-							index				<= 0;
-							S_AXIS_tLAST_INT	<= '1'; 
-							FSM					<= Idle;
-						end if; 	
+                            index				<= 0;
+                            S_AXIS_tLAST_INT	<= '1'; 
+                            FSM					<= Idle;
+                       end if; 
 					when others => 
 				end case ;
 			end if; 
