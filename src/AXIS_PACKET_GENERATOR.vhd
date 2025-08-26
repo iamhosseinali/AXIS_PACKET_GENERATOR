@@ -93,7 +93,7 @@ begin
 					end if; 
 				when Send1 => 
 						M_AXIS_tVALID  	<= '1'; 		
-						M_AXIS_tDATA	<= HEX_SPECIAL_PACKET(tDATA_WIDTH*(Wcnt-index+1)-1 downto tDATA_WIDTH*(Wcnt-index+1)-8);	
+						M_AXIS_tDATA	<= HEX_SPECIAL_PACKET(tDATA_WIDTH*(Wcnt-index+1)-1 downto tDATA_WIDTH*(Wcnt-index+1)-tDATA_WIDTH);	
 						index			<= index +1; 
 						if(index=Wcnt)then 
 							index				<= 0;
@@ -133,7 +133,7 @@ nSpecific_Number_Of_Packets_con: if(Specific_Number_Of_Packets=false) generate
 						end if; 
 					when Send1 => 
 						M_AXIS_tVALID  	<= '1'; 		
-						M_AXIS_tDATA	<= HEX_SPECIAL_PACKET(tDATA_WIDTH*(Wcnt-index+1)-1 downto tDATA_WIDTH*(Wcnt-index+1)-8);	
+						M_AXIS_tDATA	<= HEX_SPECIAL_PACKET(tDATA_WIDTH*(Wcnt-index+1)-1 downto tDATA_WIDTH*(Wcnt-index+1)-tDATA_WIDTH);	
 						index			<= index +1; 
 						if(index=Wcnt)then 
                             index				<= 0;
