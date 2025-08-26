@@ -3,50 +3,37 @@
    <wave_state>
    </wave_state>
    <db_ref_list>
-      <db_ref path="design_2_wrapper_behav.wdb" id="1">
+      <db_ref path="design_1_wrapper_behav.wdb" id="1">
          <top_modules>
-            <top_module name="design_2_wrapper" />
+            <top_module name="design_1_wrapper" />
             <top_module name="glbl" />
          </top_modules>
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="694994000fs"></ZoomStartTime>
-      <ZoomEndTime time="844994001fs"></ZoomEndTime>
-      <Cursor1Time time="1125000000fs"></Cursor1Time>
+      <ZoomStartTime time="1014866667fs"></ZoomStartTime>
+      <ZoomEndTime time="1075666668fs"></ZoomEndTime>
+      <Cursor1Time time="1055000000fs"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
       <NameColumnWidth column_width="175"></NameColumnWidth>
-      <ValueColumnWidth column_width="118"></ValueColumnWidth>
+      <ValueColumnWidth column_width="114"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="7" />
-   <wvobject fp_name="/design_2_wrapper/design_2_i/myip_0/m00_axis_aclk" type="logic">
-      <obj_property name="ElementShortName">m00_axis_aclk</obj_property>
-      <obj_property name="ObjectShortName">m00_axis_aclk</obj_property>
+   <WVObjectSize size="4" />
+   <wvobject fp_name="/design_1_wrapper/M_AXIS_0_tdata" type="array">
+      <obj_property name="ElementShortName">M_AXIS_0_tdata[7:0]</obj_property>
+      <obj_property name="ObjectShortName">M_AXIS_0_tdata[7:0]</obj_property>
    </wvobject>
-   <wvobject fp_name="/design_2_wrapper/design_2_i/myip_0/m00_axis_aresetn" type="logic">
-      <obj_property name="ElementShortName">m00_axis_aresetn</obj_property>
-      <obj_property name="ObjectShortName">m00_axis_aresetn</obj_property>
+   <wvobject fp_name="/design_1_wrapper/M_AXIS_0_tlast" type="logic">
+      <obj_property name="ElementShortName">M_AXIS_0_tlast</obj_property>
+      <obj_property name="ObjectShortName">M_AXIS_0_tlast</obj_property>
    </wvobject>
-   <wvobject fp_name="/design_2_wrapper/design_2_i/myip_0/m00_axis_tdata" type="array">
-      <obj_property name="ElementShortName">m00_axis_tdata[31:0]</obj_property>
-      <obj_property name="ObjectShortName">m00_axis_tdata[31:0]</obj_property>
-      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   <wvobject fp_name="/design_1_wrapper/M_AXIS_0_tready" type="logic">
+      <obj_property name="ElementShortName">M_AXIS_0_tready</obj_property>
+      <obj_property name="ObjectShortName">M_AXIS_0_tready</obj_property>
    </wvobject>
-   <wvobject fp_name="/design_2_wrapper/design_2_i/myip_0/m00_axis_tvalid" type="logic">
-      <obj_property name="ElementShortName">m00_axis_tvalid</obj_property>
-      <obj_property name="ObjectShortName">m00_axis_tvalid</obj_property>
-   </wvobject>
-   <wvobject fp_name="/design_2_wrapper/design_2_i/myip_0/m00_axis_tstrb" type="array">
-      <obj_property name="ElementShortName">m00_axis_tstrb[3:0]</obj_property>
-      <obj_property name="ObjectShortName">m00_axis_tstrb[3:0]</obj_property>
-   </wvobject>
-   <wvobject fp_name="/design_2_wrapper/design_2_i/myip_0/m00_axis_tlast" type="logic">
-      <obj_property name="ElementShortName">m00_axis_tlast</obj_property>
-      <obj_property name="ObjectShortName">m00_axis_tlast</obj_property>
-   </wvobject>
-   <wvobject fp_name="/design_2_wrapper/design_2_i/myip_0/m00_axis_tready" type="logic">
-      <obj_property name="ElementShortName">m00_axis_tready</obj_property>
-      <obj_property name="ObjectShortName">m00_axis_tready</obj_property>
+   <wvobject fp_name="/design_1_wrapper/M_AXIS_0_tvalid" type="logic">
+      <obj_property name="ElementShortName">M_AXIS_0_tvalid</obj_property>
+      <obj_property name="ObjectShortName">M_AXIS_0_tvalid</obj_property>
    </wvobject>
 </wave_config>
