@@ -105,7 +105,6 @@ set_property -name "webtalk.modelsim_export_sim" -value "24" -objects $obj
 set_property -name "webtalk.questa_export_sim" -value "24" -objects $obj
 set_property -name "webtalk.riviera_export_sim" -value "24" -objects $obj
 set_property -name "webtalk.vcs_export_sim" -value "24" -objects $obj
-set_property -name "webtalk.xcelium_export_sim" -value "1" -objects $obj
 set_property -name "webtalk.xsim_export_sim" -value "24" -objects $obj
 set_property -name "webtalk.xsim_launch_sim" -value "38" -objects $obj
 
@@ -272,6 +271,8 @@ proc cr_bd_design_1 { parentCell } {
   current_bd_instance $oldCurInst
 
   save_bd_design
+common::send_msg_id "BD_TCL-1000" "WARNING" "This Tcl script was generated from a block design that has not been validated. It is possible that design <$design_name> may result in errors during validation."
+
   close_bd_design $design_name 
 }
 # End of cr_bd_design_1()
