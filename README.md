@@ -1,5 +1,5 @@
 # AXIS Packet Generator
-A simple IP to generate specific packets can be used to test others IPs or wherever ypu need to send specific packets repeatedly. 
+A simple IP to generate specific packets, can be used to test other IPs or wherever u need to send specific packets repeatedly. 
 
 ![gui](images/gui.png)
 
