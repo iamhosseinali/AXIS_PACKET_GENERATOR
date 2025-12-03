@@ -88,8 +88,9 @@ begin
 			S_AXIS_tLAST_INT	<= '0'; 		
 			case FSM is 
 				when idle => 
-						if(SEND_PACKET='1' and SEND_PACKET_INT='0') then 
-						FSM	<= Send1;
+					if(SEND_PACKET='1' and SEND_PACKET_INT='0') then 
+						FSM		<= Send1;
+						index	<= 0; 
 					end if; 
 				when Send1 => 
 						M_AXIS_tVALID  	<= '1'; 		

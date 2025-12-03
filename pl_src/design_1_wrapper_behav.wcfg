@@ -11,15 +11,15 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="1014866667fs"></ZoomStartTime>
-      <ZoomEndTime time="1075666668fs"></ZoomEndTime>
-      <Cursor1Time time="1055000000fs"></Cursor1Time>
+      <ZoomStartTime time="1932066667fs"></ZoomStartTime>
+      <ZoomEndTime time="2069666668fs"></ZoomEndTime>
+      <Cursor1Time time="1325000000fs"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
       <NameColumnWidth column_width="175"></NameColumnWidth>
-      <ValueColumnWidth column_width="114"></ValueColumnWidth>
+      <ValueColumnWidth column_width="106"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="4" />
+   <WVObjectSize size="7" />
    <wvobject fp_name="/design_1_wrapper/M_AXIS_0_tdata" type="array">
       <obj_property name="ElementShortName">M_AXIS_0_tdata[7:0]</obj_property>
       <obj_property name="ObjectShortName">M_AXIS_0_tdata[7:0]</obj_property>
@@ -35,5 +35,17 @@
    <wvobject fp_name="/design_1_wrapper/M_AXIS_0_tvalid" type="logic">
       <obj_property name="ElementShortName">M_AXIS_0_tvalid</obj_property>
       <obj_property name="ObjectShortName">M_AXIS_0_tvalid</obj_property>
+   </wvobject>
+   <wvobject fp_name="/design_1_wrapper/design_1_i/AXIS_PACKET_GENERATOR_0/U0/index" type="other">
+      <obj_property name="ElementShortName">index</obj_property>
+      <obj_property name="ObjectShortName">index</obj_property>
+   </wvobject>
+   <wvobject fp_name="/design_1_wrapper/design_1_i/AXIS_PACKET_GENERATOR_0/U0/FSM" type="other">
+      <obj_property name="ElementShortName">FSM</obj_property>
+      <obj_property name="ObjectShortName">FSM</obj_property>
+   </wvobject>
+   <wvobject fp_name="/design_1_wrapper/design_1_i/AXIS_PACKET_GENERATOR_0/U0/Wcnt" type="other">
+      <obj_property name="ElementShortName">Wcnt</obj_property>
+      <obj_property name="ObjectShortName">Wcnt</obj_property>
    </wvobject>
 </wave_config>
