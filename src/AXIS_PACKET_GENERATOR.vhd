@@ -139,14 +139,16 @@ begin
 						index				<= index + 1; 
 						index_int           <= index_int + 1; 
 						if(index_int = NUM_OF_STREAM_BEATS_ARR(beat_cnt) and NUM_OF_STREAM_BEATS > 1) then 
-                              beat_cnt    <= beat_cnt + 1; 
-                              index_int   <= 1;
-                              FSM         <= IDLE;
+                            beat_cnt    <= beat_cnt + 1; 
+                            index_int   <= 1;
+                            FSM         <= IDLE;
 						end if; 
 						if(index = wcnt)then 
-						    beat_cnt	<= 1; 
+						    beat_cnt			<= 1; 
 						    index				<= 0;
-						    Packet_cnt			<= Packet_cnt +1;
+							if(NUM_OF_STREAM_BEATS = 1) then 
+						    	Packet_cnt			<= Packet_cnt +1;
+							end if; 
 						end if; 
 					end if; 
 					if(Packet_cnt = Number_Of_Packets_To_Send and NUM_OF_STREAM_BEATS = 1) then 
